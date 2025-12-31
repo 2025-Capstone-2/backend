@@ -28,6 +28,4 @@ app.add_middleware(
 
 @app.get("/")
 def main():
-    # db.execute("SELECT count(*) FROM testDB.bookTable")
-    # result = db.fetchall()
     return "Hello world!"

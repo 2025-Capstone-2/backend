@@ -1,3 +1,5 @@
+import asyncio
+import random
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from services.features.feature_extractor import analyze_pcap
 
@@ -19,6 +21,9 @@ async def analyze(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")
 
 
-@router.get("/suspicious")
-async def get_suspicious():
+# 테스트용 api
+@router.post("/suspicious")
+async def get_suspicious(file: UploadFile = File(...)):
+    delay = random.uniform(3, 5)
+    await asyncio.sleep(delay)
     return {"targets": [["G644409DSTEJ"]]}
